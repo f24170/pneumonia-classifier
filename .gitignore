@@ -3,6 +3,7 @@ venv/
 .env/
 
 #  資料與模型
+chest_xray/
 data/
 dataset/
 *.pt
