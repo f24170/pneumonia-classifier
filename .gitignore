@@ -1,0 +1,29 @@
+#  虛擬環境
+venv/
+.env/
+
+#  資料與模型
+data/
+dataset/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.npz
+
+#  系統與 IDE 檔案
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+#  暫存與輸出
+*.zip
+*.tar.gz
+*.log
+gradio_cached_examples/
+saved/
+output/
+runs/

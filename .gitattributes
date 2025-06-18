@@ -1,0 +1,24 @@
+# 統一行尾為 LF（避免跨平台混亂）
+* text=auto eol=lf
+
+# Python 檔案為文字（可 diff）
+*.py text
+
+# Markdown 與文字檔
+*.md text
+*.txt text
+
+# 模型檔與壓縮檔標記為 binary（避免 Git 卡爆）
+*.pth binary
+*.pt binary
+*.zip binary
+*.tar.gz binary
+*.ckpt binary
+
+# 圖像類也設 binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+
+# 不 diff Jupyter Notebook
+*.ipynb merge=union
