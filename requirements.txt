@@ -5,4 +5,4 @@ scikit-learn
 kaggle
 gradio>=4.0.0
 numpy
-pollow
+pillow
