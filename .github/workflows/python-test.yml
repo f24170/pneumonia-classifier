@@ -37,8 +37,7 @@ jobs:
     - name: Download Chest X-ray dataset
       run: |
         kaggle datasets download -d paultimothymooney/chest-xray-pneumonia
-        unzip -q chest-xray-pneumonia.zip
-        mv chest_xray chest_xray  # 放在專案根目錄，train.py 可以直接找到
+        unzip chest-xray-pneumonia.zip -d .
 
     - name: Run training script
       run: python train.py
