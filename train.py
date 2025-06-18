@@ -7,7 +7,7 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 
-from model import PneumoniaCNN
+from model import PneumoniaResNet18
 from utils import show_images, plot_accuracy
 
 # 檢查裝置
@@ -31,7 +31,7 @@ train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
 # 模型、損失函數、優化器
-model = PneumoniaCNN().to(device)
+model = PneumoniaResNet18().to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
