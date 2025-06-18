@@ -1,0 +1,33 @@
+name: Test Python App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Test import (train.py)
+      run: |
+        python -c "import train; print('✅ train.py 匯入成功')"
+
+    - name: Test import (predict.py)
+      run: |
+        python -c "import predict; print('✅ predict.py 匯入成功')"
