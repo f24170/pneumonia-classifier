@@ -1,35 +1,44 @@
-name: Test Python App
+name: Train pneumonia model
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout source
       uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: "3.10"
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install torch torchvision matplotlib
+        pip install kaggle
 
-    - name: Test import (train.py)
+    - name: Setup Kaggle API Key
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
       run: |
-        python -c "import train; print('✅ train.py 匯入成功')"
+        mkdir -p ~/.kaggle
+        echo "{\"username\":\"$KAGGLE_USERNAME\", \"key\":\"$KAGGLE_KEY\"}" > ~/.kaggle/kaggle.json
+        chmod 600 ~/.kaggle/kaggle.json
 
-    - name: Test import (predict.py)
+    - name: Download Chest X-ray dataset
       run: |
-        python -c "import predict; print('✅ predict.py 匯入成功')"
+        kaggle datasets download -d paultimothymooney/chest-xray-pneumonia
+        unzip -q chest-xray-pneumonia.zip
+        mv chest_xray chest_xray  # 放在專案根目錄，train.py 可以直接找到
+
+    - name: Run training script
+      run: python train.py
