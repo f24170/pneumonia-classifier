@@ -24,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install torch torchvision
+        pip install torch torchvision matplotlib
 
     - name: Test import (train.py)
       run: |
