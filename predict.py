@@ -1,5 +1,6 @@
 import torch
 from torchvision import transforms
+from utils import print_prediction_with_confidence
 from PIL import Image
 import sys
 import os
@@ -39,6 +40,7 @@ def predict_image(image_path):
 
     with torch.no_grad():
         outputs = model(image)
+        print_prediction_with_confidence(outputs, class_names)
         _, predicted = torch.max(outputs, 1)
         label = class_names[predicted.item()]
         print(f"✅ 預測結果：{label}")
