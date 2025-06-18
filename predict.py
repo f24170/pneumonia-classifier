@@ -32,7 +32,7 @@ class_names = ["NORMAL", "PNEUMONIA"]
 # 預測函式
 def predict_image(image_path):
     if not os.path.exists(image_path):
-        print(f"❌ 找不到圖片：{image_path}")
+        print(f"找不到圖片：{image_path}")
         return
 
     image = Image.open(image_path).convert("RGB")
@@ -43,7 +43,7 @@ def predict_image(image_path):
         print_prediction_with_confidence(outputs, class_names)
         _, predicted = torch.max(outputs, 1)
         label = class_names[predicted.item()]
-        print(f"✅ 預測結果：{label}")
+        print(f"預測結果：{label}")
 
 # 主程式
 if __name__ == "__main__":
