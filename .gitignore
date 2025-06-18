@@ -35,4 +35,5 @@ venv/
 *.env
 
 # Kaggle / API keys
+download_dataset.py
 kaggle.json
